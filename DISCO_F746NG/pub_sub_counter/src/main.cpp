@@ -48,8 +48,8 @@ void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
 void setup()
 {
   byte arduino_mac[] = {0xAA, 0xBB, 0xCC, 0xEE, 0xDD, 0xFF};
-  IPAddress arduino_ip(192, 168, 10, 111);
-  IPAddress agent_ip(192, 168, 10, 6);
+  IPAddress arduino_ip(192, 168, 0, 100);
+  IPAddress agent_ip(192, 168, 0, 10);
   int agent_port = 2000;
 
   setup_microros_ethernet("uros_node", "ns", 2, arduino_mac, arduino_ip, agent_ip, agent_port);
