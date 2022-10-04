@@ -13,7 +13,7 @@
 
 ### pub_sub_counter
 
-If `/ns/bool_data`" is true, the value in `/ns/int32_data` is incremented every second.
+If "`/ns/bool_data`" is true, the value in `/ns/int32_data` is incremented every second.
 
 ```mermaid
 graph LR
