@@ -3,7 +3,6 @@
 // microros definition =====================================================
 #include "micro_ros_arduino_simpler/simpler_base.h"
 
-
 #include <std_msgs/msg/bool.h>
 #include <std_msgs/msg/int32.h>
 
@@ -42,18 +41,19 @@ void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
 // setup micro_ros_arduino ===============================================
 void setup()
 {
-#if !defined(STM32L4xx)
-#error "This example is only for STM32L4xx"
+#if !defined(ARDUINO_ARCH_STM32)
+#error "This example is only for STM32 boards."
 #endif
 
-  byte arduino_mac[] = {0xAA, 0xBB, 0xCC, 0xEE, 0xDD, 0xFF};
-  IPAddress arduino_ip(192, 168, 10, 111);
-  IPAddress agent_ip(192, 168, 10, 10);
+  Serial.begin(115200);
+
+  byte arduino_mac[] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66};
+  IPAddress arduino_ip(192, 168, 0, 11);
+  IPAddress agent_ip(192, 168, 0, 1);
   int agent_port = 2000;
-  int cs = 6;
+  int cs = 10;
 
-  setup_microros_ethernet("uros_node", "ns", 2, arduino_mac, arduino_ip, agent_ip, agent_port, false, cs);
-
+  setup_microros_ethernet("uros_node", "ns", 2, arduino_mac, arduino_ip, agent_ip, agent_port, false, 10);
 
   // rclc-publisher-subscriber-timer ======================================
   rclc_publisher_init_default(&publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32), "int32_data");
